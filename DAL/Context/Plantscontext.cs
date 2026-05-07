@@ -12,8 +12,12 @@ namespace DAL.Context
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-                
-        }
+		
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(Plantscontext).Assembly);
+            base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.ApplyConfiguration(ne)
+		}
         public virtual DbSet<Category>Category { get; set; }
         public virtual DbSet<Product>Product { get; set; }
         public virtual DbSet<Order> Order { get; set; }

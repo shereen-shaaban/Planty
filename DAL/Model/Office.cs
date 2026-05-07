@@ -14,7 +14,6 @@ namespace DAL.Model
         public string Street { get; set; }
         public string Country { get; set; }
         public string Phone { get; set; }
-
         //navigation prperty
         public virtual ICollection<Employee>? Employees { get; set; } = new HashSet<Employee>();
     }
