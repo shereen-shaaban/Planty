@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PlantsBAL": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
