@@ -30,16 +30,19 @@ namespace DAL.Repository
         public void ADD(T t)
         {
             dbset.Add(t);
+            plantscontext.SaveChanges();
         }
 
         public void Delete(T t)
         {
             dbset.Remove(t);
+            plantscontext.SaveChanges();
 
         }
         public void update(T t)
         {
             dbset.Update(t);
+            plantscontext.SaveChanges();
         }
 
         

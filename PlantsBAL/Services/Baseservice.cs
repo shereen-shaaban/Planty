@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlantsBAL.Services
 {
-    public interface IBaseservice<T> 
+    public interface IBaseservice<T> where T : class
     {
 		List<T> Getall();
 		void ADD(T t);
