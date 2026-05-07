@@ -1,5 +1,6 @@
 <Solution>
-  <Project Path="DAL/DAL.csproj" />
+  <Project Path="DAL/PlantsDAL.csproj" />
   <Project Path="FlowersApp/FlowersApp.csproj" />
+  <Project Path="PlantsBAL/PlantsBAL.csproj" />
   <Project Path="PlantsDTO/PlantsDTO.csproj" />
 </Solution>
