@@ -9,6 +9,8 @@ namespace DAL.Context
 {
     public class Plantscontext:DbContext
     {
+
+        public Plantscontext(DbContextOptions<Plantscontext>options):base(options) { }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
