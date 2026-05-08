@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="GetDepartment.html" />
+  </Folder>
   <Project Path="DAL/PlantsDAL.csproj" />
   <Project Path="FlowersApp/FlowersApp.csproj" />
   <Project Path="PlantsBAL/PlantsBAL.csproj" />
