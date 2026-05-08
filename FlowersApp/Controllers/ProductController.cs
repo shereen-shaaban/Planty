@@ -72,6 +72,31 @@ namespace FlowersApp.Controllers
               
         }
 
+        [HttpGet("{name:alpha}")]
+        public Generlresponse Getproductbyname(string name)
+        {
+            Product product= repo.Getbyname(name);
+            GetproductDTO getproductDTO = new GetproductDTO();
+            getproductDTO.Name=product.Name;
+            getproductDTO.Price=product.Price;
+            getproductDTO.Image = product.Image;
+            getproductDTO.Description=product.Description;
+           
+            Generlresponse generalresponse   = new Generlresponse();
+            if(product != null)
+            {
+                generalresponse.data = getproductDTO;
+                generalresponse.Sucess= true;
+
+            }
+            else
+            {
+                generalresponse.data = "noyfound";
+                generalresponse.Sucess= false;
+            }
+            return generalresponse;
+        }
+
         [HttpPost]
         public IActionResult Addproduct(AddproductDTO addproduct)
         {
@@ -84,17 +109,52 @@ namespace FlowersApp.Controllers
             repo.ADD(product);
             return CreatedAtAction("Getproductbyid", new {id=product.Id},product);
         }
-        //[HttpDelete]
-        //      public  IActionResult Deleteproduct(int id)
-        //      {
+        [HttpDelete("{id:int}")]
+        public Generlresponse Deleteproduct(int id)
+        {
+            Product product = repo.Getbyid(id);
+            Generlresponse generlresponse=new Generlresponse();
+            if (product != null)
+            {
+                repo.Delete(product);
+                generlresponse.data = "deleted successfuly";
+                generlresponse.Sucess = true;
+            }
+            else
+            {
+                generlresponse.data = "notfound";
+                generlresponse.Sucess = false;
+            }
+            return generlresponse;
+        }
+        [HttpPut("{id}")]
+        public Generlresponse Updateproduct(int id,AddproductDTO addproductDTO)
+        {
+            Product product = repo.Getbyid(id);
+            Generlresponse generlresponse=new Generlresponse();
+            if (product != null)
+            {
+                product.Name = addproductDTO.Name;
+                product.Price = addproductDTO.Price;
+                product.Description = addproductDTO.Description;
+                product.Image = addproductDTO.Image;
+                product.quanity = addproductDTO.quanity;
+                repo.Edit(product);
+                generlresponse.data = "updated successfuly";
+                generlresponse.Sucess = true;
+            }
+            else
+            {
+                generlresponse.data = "not found";
+                generlresponse.Sucess = false;
+            }
 
-        //      }
-        //      [HttpPut]
-        //public IActionResult Updateproduct(int id)
-        //{
+            return generlresponse;
 
-    
+        }
 
 
-}
-}
+
+
+        }
+    }
