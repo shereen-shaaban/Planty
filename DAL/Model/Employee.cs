@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using PlantsDAL.Validations.Employee;
 
 namespace DAL.Model
 {
@@ -10,8 +11,9 @@ namespace DAL.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string address1{ get; set; }
+        [Employeeaddressvalidation]
         public string address2{ get; set; }
-
+        [EmployeeBDValidation]
         public DateTime Birthdate { get; set; }
         public string role { get; set; }
         //[NotMapped]

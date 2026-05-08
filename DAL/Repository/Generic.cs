@@ -45,6 +45,10 @@ namespace DAL.Repository
             plantscontext.SaveChanges();
         }
 
-        
+        public T? Getbyname(string name)
+        {
+           return dbset.Find(name);
+
+        }
     }
 }
