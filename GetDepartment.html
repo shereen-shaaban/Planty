@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<input type="text" id="deptid">
+<input type="button" onclick="loaddata()">
+<div id="data"></div>
+
+<script>
+    function loaddata()
+    {
+        var id=document.querySelector("#deptid").value;
+        var data=document.querySelector("#data")
+          $.ajax({url: `http://localhost:5281/api/Department/${id}`, success: function(result){
+    data.innerHTML=result.name;
+  }});
+    }
+</script>
+</body>
+</html>
