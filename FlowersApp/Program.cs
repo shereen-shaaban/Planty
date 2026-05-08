@@ -19,6 +19,13 @@ namespace FlowersApp
                 options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
 
             });
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("shereen", policy =>
+                {
+                    policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
             builder.Services.AddSwaggerGen();
@@ -34,6 +41,7 @@ namespace FlowersApp
 
             app.UseAuthorization();
             app.UseStaticFiles();
+            app.UseCors("shereen");
 
             app.MapControllers();
 
