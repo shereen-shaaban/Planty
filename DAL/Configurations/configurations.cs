@@ -34,7 +34,7 @@ namespace DAL.Configurations
                 builder.HasKey(p => p.Id);
                 builder.Property(p=>p.Name).HasMaxLength(50).IsRequired(true);
                 builder.Property(p=>p.quanity).HasDefaultValue(0);
-                builder.Property(p=>p.Price).IsRequired(false);
+                builder.Property(p=>p.Price).HasColumnType("decimal(18,4)").IsRequired(true);
                 builder.Property(p => p.Description).HasMaxLength(200).IsRequired(false);
                 builder.Property(p=>p.Image).IsRequired(false);
 
@@ -54,8 +54,10 @@ namespace DAL.Configurations
                 //properties
                 builder.HasKey(o => o.Id);
                 builder.Property(o=>o.status).HasDefaultValue("pending");
-                builder.Property(o => o.Bookdate).HasDefaultValue("GETDATE()");
-                builder.Property(o => o.wantdate).IsRequired(true);
+                //builder.Property(o => o.Bookdate).HasDefaultValue("GETDATE()");
+				builder.Property(o => o.Bookdate)
+	           .HasDefaultValueSql("GETDATE()");
+				builder.Property(o => o.wantdate).IsRequired(true);
 
                 //relations
 
@@ -127,7 +129,7 @@ namespace DAL.Configurations
                 //properties
                 builder.HasKey(e => e.Id);
                 builder.Property(e => e.Name).HasMaxLength(100).IsRequired();
-                builder.Property(e => e.Birthdate).IsRequired(false);
+                builder.Property(e => e.Birthdate).IsRequired();
                 builder.Property(e => e.address1).HasMaxLength(200).IsRequired(false);
                 builder.Property(e => e.address2).HasMaxLength(200).IsRequired(false);
 
@@ -140,7 +142,13 @@ namespace DAL.Configurations
                     .WithMany(o => o.Employees)
                     .HasForeignKey(e => e.Officeid);
 
-            }
+
+                builder.HasOne(e => e.Manager)
+                    .WithMany(m => m.Employees)
+                    .HasForeignKey(e => e.managerid)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+			}
         }
 		//Department configuration
 		public class DepartmentConfiguration:IEntityTypeConfiguration<Department>

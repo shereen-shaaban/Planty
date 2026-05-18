@@ -1,6 +1,8 @@
 
 using DAL.Context;
+using DAL.Repository;
 using Microsoft.EntityFrameworkCore;
+using PlantsBAL.Services;
 
 namespace FlowersApp
 {
@@ -19,7 +21,9 @@ namespace FlowersApp
                 options.UseSqlServer(builder.Configuration.GetConnectionString("cs"));
 
             });
-            builder.Services.AddCors(options =>
+			builder.Services.AddScoped(typeof(IbaseRepo<>), typeof(Generic<>));
+			builder.Services.AddScoped(typeof(IBaseservice<>), typeof(Genericeservice<>));
+			builder.Services.AddCors(options =>
             {
                 options.AddPolicy("shereen", policy =>
                 {
