@@ -7,7 +7,7 @@ namespace DAL.Repository
     public interface IbaseRepo<T> where T : class
     {
         public T Getbyid(int id);
-        public T Getbyname(string name);
+        //public T Getbyname(string name);
        public List<T> GetAll();
 
         public void ADD(T t);

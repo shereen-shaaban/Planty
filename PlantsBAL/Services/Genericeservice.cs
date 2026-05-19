@@ -16,10 +16,10 @@ namespace PlantsBAL.Services
             
         }
 
-        public T Getbyname(string name)
-        {
-            return repo.Getbyname(name);
-        }
+        //public T Getbyname(string name)
+        //{
+        //    return repo.Getbyname(name);
+        //}
 
         void IBaseservice<T>.ADD(T t)
         {

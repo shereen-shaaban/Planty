@@ -7,7 +7,9 @@ namespace PlantsDTO.DTO.EmployeeDTO
 {
     public class AddemployeeDTO
     {
-		public int Id { get; set; }
+		public int OfficeID { get; set; }
+		public int Managerid { get; set; }
+		public int DeptId { get; set; }
 		public string Name { get; set; }
 		public string address1 { get; set; }
 		[Employeeaddressvalidation]

@@ -21,7 +21,7 @@ namespace DAL.Configurations
                 //relations
                 builder.HasMany(c => c.Products)
                     .WithOne(p => p.category)
-                    .HasForeignKey(p => p.Id);
+                    .HasForeignKey(p => p.Cid);
             }
         }
 		//product configuration
