@@ -46,7 +46,7 @@ namespace FlowersApp.Controllers
 			}
 			else
 			{
-				generlresponse.data = "no products exist until now";
+				generlresponse.data = "no employees exist until now";
 				generlresponse.Sucess = false;
 				//return generlresponse;
 			}
@@ -74,37 +74,40 @@ namespace FlowersApp.Controllers
 				return NotFound("there is'nt any product with that id");
 		}
 
-		[HttpGet("{name:alpha}")]
-		public Generlresponse Getemployeebyname(string name)
-		{
-			Generlresponse generalresponse = new Generlresponse();
-			Employee employee = repo.Getbyname(name);
-			GetEmployeeDTO getEmployeeDTO = new GetEmployeeDTO();
+		//[HttpGet("{name:alpha}")]
+		//public Generlresponse Getemployeebyname(string name)
+		//{
+		//	Generlresponse generalresponse = new Generlresponse();
+		//	Employee employee = repo.Getbyname(name);
+		//	GetEmployeeDTO getEmployeeDTO = new GetEmployeeDTO();
 
-			if (employee != null)
-			{
-				getEmployeeDTO.Name = employee.Name;
-				getEmployeeDTO.address1 = employee.address1;
-				getEmployeeDTO.address2 = employee.address2;
-				getEmployeeDTO.Birthdate = employee.Birthdate;
-				getEmployeeDTO.role = employee.role;
+		//	if (employee != null)
+		//	{
+		//		getEmployeeDTO.Name = employee.Name;
+		//		getEmployeeDTO.address1 = employee.address1;
+		//		getEmployeeDTO.address2 = employee.address2;
+		//		getEmployeeDTO.Birthdate = employee.Birthdate;
+		//		getEmployeeDTO.role = employee.role;
 
-				generalresponse.data = getEmployeeDTO;
-				generalresponse.Sucess = true;
+		//		generalresponse.data = getEmployeeDTO;
+		//		generalresponse.Sucess = true;
 
-			}
-			else
-			{
-				generalresponse.data = "noyfound";
-				generalresponse.Sucess = false;
-			}
-			return generalresponse;
-		}
+		//	}
+		//	else
+		//	{
+		//		generalresponse.data = "noyfound";
+		//		generalresponse.Sucess = false;
+		//	}
+		//	return generalresponse;
+		//}
 
 		[HttpPost]
 		public IActionResult Addproduct(AddemployeeDTO addemployee)
 		{
 			Employee employee = new Employee();
+			employee.Did = addemployee.DeptId;
+			employee.Officeid= addemployee.OfficeID;
+			employee.managerid = addemployee.Managerid;
 			employee.Name = addemployee.Name;
 			employee.address1= addemployee.address1;
 			employee.address2 = addemployee.address2;

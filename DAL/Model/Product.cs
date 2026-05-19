@@ -21,7 +21,7 @@ namespace DAL.Model
         //navigation property
         public virtual Category? category {get;set; }
 
-        public virtual ICollection<OrderProduct> OrdersProduct { get; set; }=new HashSet<OrderProduct>();
+        public virtual ICollection<OrderProduct>? OrdersProduct { get; set; }=new HashSet<OrderProduct>();
 
 
     }

@@ -17,9 +17,10 @@ namespace FlowersApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult Getallcategories()
+        public Generlresponse Getallcategories()
         {
-            List<Category> categories = repo.Getall();
+            Generlresponse generlresponse = new Generlresponse();
+			List<Category> categories = repo.Getall();
             if (categories.Count > 0)
             {
                 List<GetCategoryDTO> getCategoryDTOslist = new List<GetCategoryDTO>();
@@ -31,15 +32,20 @@ namespace FlowersApp.Controllers
                     getCategoryDTO.Description = category.Description;
 
                     getCategoryDTOslist.Add(getCategoryDTO);
-
-                    
-
+                    generlresponse.Sucess = true;
+                    generlresponse.data = getCategoryDTOslist;
 				}
-                return Ok(getCategoryDTOslist);
+                
             }
             else
-                return BadRequest();
-        }
+            {
+
+                generlresponse.Sucess = false;
+                generlresponse.data = "no category created untill now";
+			}
+
+			return generlresponse;
+		}
 
         [HttpGet]
         [Route("{id}")]
@@ -63,7 +69,8 @@ namespace FlowersApp.Controllers
             Category category=new Category();
             category.Name = getCategoryDTO.Name;
             category.Description = getCategoryDTO.Description;
-            return CreatedAtAction("getcategorybyid", new { id = category.Id }, category);
+            repo.ADD(category);
+			return CreatedAtAction("getcategorybyid", new { id = category.Id }, category);
         }
 
 

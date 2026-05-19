@@ -72,36 +72,37 @@ namespace FlowersApp.Controllers
               
         }
 
-        [HttpGet("{name:alpha}")]
-        public Generlresponse Getproductbyname(string name)
-        {
-            Product product= repo.Getbyname(name);
-            GetproductDTO getproductDTO = new GetproductDTO();
-            getproductDTO.Name=product.Name;
-            getproductDTO.Price=product.Price;
-            getproductDTO.Image = product.Image;
-            getproductDTO.Description=product.Description;
+        //[HttpGet("{name:alpha}")]
+        //public Generlresponse Getproductbyname(string name)
+        //{
+        //    Product product= repo.Getbyname(name);
+        //    GetproductDTO getproductDTO = new GetproductDTO();
+        //    getproductDTO.Name=product.Name;
+        //    getproductDTO.Price=product.Price;
+        //    getproductDTO.Image = product.Image;
+        //    getproductDTO.Description=product.Description;
            
-            Generlresponse generalresponse   = new Generlresponse();
-            if(product != null)
-            {
-                generalresponse.data = getproductDTO;
-                generalresponse.Sucess= true;
+        //    Generlresponse generalresponse   = new Generlresponse();
+        //    if(product != null)
+        //    {
+        //        generalresponse.data = getproductDTO;
+        //        generalresponse.Sucess= true;
 
-            }
-            else
-            {
-                generalresponse.data = "noyfound";
-                generalresponse.Sucess= false;
-            }
-            return generalresponse;
-        }
+        //    }
+        //    else
+        //    {
+        //        generalresponse.data = "noyfound";
+        //        generalresponse.Sucess= false;
+        //    }
+        //    return generalresponse;
+        //}
 
         [HttpPost]
         public IActionResult Addproduct(AddproductDTO addproduct)
         {
             Product product=new Product();
-            product.Name = addproduct.Name;
+            product.Cid = addproduct.CategoryId;
+			product.Name = addproduct.Name;
             product.Price = addproduct.Price;
             product.Description = addproduct.Description;
             product.Image = addproduct.Image;

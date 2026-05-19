@@ -11,6 +11,6 @@ namespace PlantsBAL.Services
 		void Delete(T t);
 		void Edit(T t);
         T Getbyid(int id);
-		T Getbyname(string name);
+		//T Getbyname(string name);
     }
 }
