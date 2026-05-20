@@ -8,13 +8,14 @@ namespace PlantsDTO.DTO.EmployeeDTO
     public class AddemployeeDTO
     {
 		public int OfficeID { get; set; }
-		public int Managerid { get; set; }
+		public int? Managerid { get; set; }
 		public int DeptId { get; set; }
 		public string Name { get; set; }
 		public string address1 { get; set; }
 		[Employeeaddressvalidation]
 		public string address2 { get; set; }
 		//[EmployeeBDValidation]
+		[EmployeeBDValidation]
 		public DateTime Birthdate { get; set; }
 		public string role { get; set; }
 	}

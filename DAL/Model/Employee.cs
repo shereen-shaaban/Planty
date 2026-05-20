@@ -20,14 +20,14 @@ namespace DAL.Model
         //public int age { get; set; } = DateTime.Now - Birthdate;
 
         //forign keys
-        public int managerid { get; set; }
+        public int? managerid { get; set; }
 
         public int Officeid     { get; set; }
 
         public int Did { get; set; }
         //navigation property
         public virtual Office? office { get; set; }
-        public virtual ICollection<Employee> Employees { get; set; } = new HashSet<Employee>();
+        public virtual ICollection<Employee>? Employees { get; set; } = new HashSet<Employee>();
         public virtual Employee? Manager { get; set; }
         public virtual Department? Department { get; set; }
 

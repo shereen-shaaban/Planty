@@ -75,7 +75,8 @@ namespace PlantsDAL.Migrations
                 name: "Product",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
@@ -87,8 +88,8 @@ namespace PlantsDAL.Migrations
                 {
                     table.PrimaryKey("PK_Product", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Product_Category_Id",
-                        column: x => x.Id,
+                        name: "FK_Product_Category_Cid",
+                        column: x => x.Cid,
                         principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -147,7 +148,7 @@ namespace PlantsDAL.Migrations
                     address2 = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
                     Birthdate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     role = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    managerid = table.Column<int>(type: "int", nullable: false),
+                    managerid = table.Column<int>(type: "int", nullable: true),
                     Officeid = table.Column<int>(type: "int", nullable: false),
                     Did = table.Column<int>(type: "int", nullable: false)
                 },
@@ -234,6 +235,11 @@ namespace PlantsDAL.Migrations
                 name: "IX_Payment_Customerid",
                 table: "Payment",
                 column: "Customerid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_Cid",
+                table: "Product",
+                column: "Cid");
         }
 
         /// <inheritdoc />

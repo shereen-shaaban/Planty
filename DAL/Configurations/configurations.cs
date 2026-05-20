@@ -128,7 +128,8 @@ namespace DAL.Configurations
             {
                 //properties
                 builder.HasKey(e => e.Id);
-                builder.Property(e => e.Name).HasMaxLength(100).IsRequired();
+                builder.Property(e => e.managerid).IsRequired(false);
+				builder.Property(e => e.Name).HasMaxLength(100).IsRequired();
                 builder.Property(e => e.Birthdate).IsRequired();
                 builder.Property(e => e.address1).HasMaxLength(200).IsRequired(false);
                 builder.Property(e => e.address2).HasMaxLength(200).IsRequired(false);
@@ -145,17 +146,19 @@ namespace DAL.Configurations
 
                 builder.HasOne(e => e.Manager)
                     .WithMany(m => m.Employees)
-                    .HasForeignKey(e => e.managerid)
+                    .HasForeignKey(e => e.managerid).IsRequired(false)
                     .OnDelete(DeleteBehavior.NoAction);
 
 			}
         }
+
+
+
 		//Department configuration
 		public class DepartmentConfiguration:IEntityTypeConfiguration<Department>
         {
             public void Configure(EntityTypeBuilder<Department>builder)
             {
-
                 //properties
                 builder.HasKey(d => d.Id);
                 builder.Property(d => d.Name).HasMaxLength(100).IsRequired();
@@ -164,6 +167,8 @@ namespace DAL.Configurations
                 //DateOnly one relation with employee and i code it before it's in the ' employee configuration
             }
         }
+
+
 		//Office configuration
         public class OfficeConfiguration :IEntityTypeConfiguration<Office>
         {

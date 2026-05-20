@@ -17,6 +17,7 @@ namespace FlowersApp.Controllers
 			repo = _repo;
 		}
 
+		//Get all employees
 		[HttpGet]
 		public Generlresponse GetallEmployees()
 		{
@@ -33,28 +34,21 @@ namespace FlowersApp.Controllers
 					getEmployeeDTO.address2 = e.address2;
 					getEmployeeDTO.Birthdate = e.Birthdate;
 					getEmployeeDTO.role = e.role;
-					
 					getEmployeeDTOList.Add(getEmployeeDTO);
-
-
 				});
-
 				generlresponse.data = getEmployeeDTOList;
 				generlresponse.Sucess = true;
-
-				//return generlresponse;
 			}
 			else
 			{
 				generlresponse.data = "no employees exist until now";
 				generlresponse.Sucess = false;
-				//return generlresponse;
 			}
 			return generlresponse;
-
-
 		}
 
+		
+		//Get employee by id
 		[HttpGet("{id:int}")]
 		public IActionResult Getemployeebyid(int id)
 		{
@@ -74,35 +68,10 @@ namespace FlowersApp.Controllers
 				return NotFound("there is'nt any product with that id");
 		}
 
-		//[HttpGet("{name:alpha}")]
-		//public Generlresponse Getemployeebyname(string name)
-		//{
-		//	Generlresponse generalresponse = new Generlresponse();
-		//	Employee employee = repo.Getbyname(name);
-		//	GetEmployeeDTO getEmployeeDTO = new GetEmployeeDTO();
 
-		//	if (employee != null)
-		//	{
-		//		getEmployeeDTO.Name = employee.Name;
-		//		getEmployeeDTO.address1 = employee.address1;
-		//		getEmployeeDTO.address2 = employee.address2;
-		//		getEmployeeDTO.Birthdate = employee.Birthdate;
-		//		getEmployeeDTO.role = employee.role;
-
-		//		generalresponse.data = getEmployeeDTO;
-		//		generalresponse.Sucess = true;
-
-		//	}
-		//	else
-		//	{
-		//		generalresponse.data = "noyfound";
-		//		generalresponse.Sucess = false;
-		//	}
-		//	return generalresponse;
-		//}
-
+		//Add new employee
 		[HttpPost]
-		public IActionResult Addproduct(AddemployeeDTO addemployee)
+		public IActionResult AddEmployee([FromBody]AddemployeeDTO addemployee)
 		{
 			Employee employee = new Employee();
 			employee.Did = addemployee.DeptId;
@@ -113,12 +82,14 @@ namespace FlowersApp.Controllers
 			employee.address2 = addemployee.address2;
 			employee.Birthdate = addemployee.Birthdate;
 			employee.role = addemployee.role;
-
 			repo.ADD(employee);
-			return CreatedAtAction("Getproductbyid", new { id = employee.Id }, employee);
+			return CreatedAtAction("Getemployeebyid", new { id = employee.Id }, employee);
 		}
+
+
+		//Delete employee by id
 		[HttpDelete("{id:int}")]
-		public Generlresponse Deleteproduct(int id)
+		public Generlresponse Deleteemoloyee(int id)
 		{
 			Employee employee = repo.Getbyid(id);
 			Generlresponse generlresponse = new Generlresponse();
@@ -135,8 +106,11 @@ namespace FlowersApp.Controllers
 			}
 			return generlresponse;
 		}
+
+
+		//	Update employee by id
 		[HttpPut("{id}")]
-		public Generlresponse Updateproduct(int id, AddemployeeDTO addemployee)
+		public Generlresponse UpdateEmployee(int id, AddemployeeDTO addemployee)
 		{
 			Employee employee = repo.Getbyid(id);
 			Generlresponse generlresponse = new Generlresponse();
@@ -156,7 +130,6 @@ namespace FlowersApp.Controllers
 				generlresponse.data = "not found";
 				generlresponse.Sucess = false;
 			}
-
 			return generlresponse;
 
 		}
