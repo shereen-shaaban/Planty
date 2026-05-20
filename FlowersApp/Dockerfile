@@ -9,7 +9,7 @@ COPY PlantsDTO/PlantsDTO.csproj    PlantsDTO/
 RUN dotnet restore  FlowersApp/FlowersApp.csproj
 
 
-WORKDIR /app/FlowersApp
+WORKDIR /app
 COPY . .
 RUN dotnet publish FlowersApp/FlowersApp.csproj -c Release -o /app/out     
 
