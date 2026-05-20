@@ -117,7 +117,7 @@ namespace PlantsDAL.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("managerid")
+                    b.Property<int?>("managerid")
                         .HasColumnType("int");
 
                     b.Property<string>("role")
@@ -258,7 +258,10 @@ namespace PlantsDAL.Migrations
             modelBuilder.Entity("DAL.Model.Product", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Cid")
                         .HasColumnType("int");
@@ -285,6 +288,8 @@ namespace PlantsDAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Cid");
+
                     b.ToTable("Product");
                 });
 
@@ -305,8 +310,7 @@ namespace PlantsDAL.Migrations
                     b.HasOne("DAL.Model.Employee", "Manager")
                         .WithMany("Employees")
                         .HasForeignKey("managerid")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Department");
 
@@ -360,7 +364,7 @@ namespace PlantsDAL.Migrations
                 {
                     b.HasOne("DAL.Model.Category", "category")
                         .WithMany("Products")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("Cid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
