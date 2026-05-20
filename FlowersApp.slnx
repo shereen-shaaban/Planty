@@ -1,9 +1,10 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path="docker-compose.yml" />
     <File Path="GetDepartment.html" />
   </Folder>
-  <Project Path="DAL/PlantsDAL.csproj" />
-  <Project Path="FlowersApp/FlowersApp.csproj" />
-  <Project Path="PlantsBAL/PlantsBAL.csproj" />
-  <Project Path="PlantsDTO/PlantsDTO.csproj" />
+  <Project Path="D:/iti.net/advanced c sharp/FlowersApp/DAL/PlantsDAL.csproj" />
+  <Project Path="D:/iti.net/advanced c sharp/FlowersApp/FlowersApp/FlowersApp.csproj" />
+  <Project Path="D:/iti.net/advanced c sharp/FlowersApp/PlantsBAL/PlantsBAL.csproj" />
+  <Project Path="D:/iti.net/advanced c sharp/FlowersApp/PlantsDTO/PlantsDTO.csproj" />
 </Solution>

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PlantsDAL.Validations.Employee
 {
-    internal class EmployeeBDValidation:ValidationAttribute
+    public class EmployeeBDValidation:ValidationAttribute
     {
         public override bool IsValid(object? value)
         {
