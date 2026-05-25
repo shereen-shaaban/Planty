@@ -1,9 +1,7 @@
-
 services:
 
   sqlserver:
-    image: mcr.microsoft.com/mssql/server
-
+    image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: flowers_sql
 
     environment:
@@ -11,11 +9,10 @@ services:
       SA_PASSWORD: "Shereen@123"
 
     ports:
-      - "5000:1433"
+      - "1433:1433"
 
     volumes:
       - sql_data:/var/opt/mssql
-
 
   flowersapi:
     build:
@@ -23,7 +20,6 @@ services:
       dockerfile: FlowersApp/Dockerfile
 
     container_name: flowers_api
-
     depends_on:
       - sqlserver
 
@@ -33,5 +29,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
 
-      # connection string inside container
-      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=Planty;User Id=sa;Password=shereen@123;TrustServerCertificate=True;"
+      ConnectionStrings__cs: "Server=sqlserver;Database=Planty;User Id=sa;Password=Shereen@123;TrustServerCertificate=True;"
+
+volumes:
+  sql_data:
